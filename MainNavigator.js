@@ -3,37 +3,29 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { Platform } from 'react-native';
-import FilmsScreen from '../screens/FilmsScreen';
-import PlanetsScreen from '../screens/PlanetsScreen';
-import SpaceshipsScreen from '../screens/SpaceshipsScreen';
+import FilmsScreen from './Films';
+import SpaceshipsScreen from './Ships';
+import PlanetsScreen from './Planets';
+import {menu, Container} from 'semantic-ui-react';
+import {link} from 'react-router-dom';
 
-const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
+export default function MainNavigator {
+  return(
+    <menu inverted>
+      <Container>
+        <link to='/>'>
+        <Menu.Item name='Films'/>
+        </link>
+        <link to='/>'>
+        <Menu.Item name='Planets'/>
+        </link>
+        <link to='/>'>
+        <Menu.Item name='Ships'/>
+        </link>
 
-function TabNavigator() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Planets" component={PlanetsScreen} />
-      <Tab.Screen name="Films" component={FilmsScreen} />
-      <Tab.Screen name="Spaceships" component={SpaceshipsScreen} />
-    </Tab.Navigator>
-  );
-}
-
-function DrawerNavigator() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Planets" component={PlanetsScreen} />
-      <Drawer.Screen name="Films" component={FilmsScreen} />
-      <Drawer.Screen name="Spaceships" component={SpaceshipsScreen} />
-    </Drawer.Navigator>
-  );
-}
-
-export default function MainNavigator() {
-  return (
-    <NavigationContainer>
-      {Platform.OS === 'ios' ? <TabNavigator /> : <DrawerNavigator />}
-    </NavigationContainer>
-  );
+      </Container>
+    </menu>
+  ) 
+  
+  
 }
